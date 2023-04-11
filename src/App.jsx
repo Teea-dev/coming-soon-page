@@ -7,8 +7,43 @@ import {
 } from "react-icons/fa";
 import logo from "./assets/image/logo.png";
 import ProgressBar from "./ProgressBar";
+import { motion } from "framer-motion";
 
 function App() {
+  const word = "COMING SOON";
+  const wordArray = word.split("");
+
+  const containerVariants = {
+    hidden: { opacity: 1 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.12,
+        delayChildren: 0.04 * 0.1,
+      },
+    },
+  };
+
+  const childVariants = {
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        type: "spring",
+        stiffness: 100,
+        damping: 12,
+      },
+    },
+    hidden: {
+      opacity: 0,
+      y: 20,
+      transition: {
+        type: "spring",
+        stiffness: 100,
+        damping: 12,
+      },
+    },
+  };
   return (
     <>
       <div className="bgDiv">
@@ -55,7 +90,23 @@ function App() {
         </div>
 
         <div className="coming-soon">
-          <h1>COMING SOON</h1>
+          <motion.div
+            className="word"
+            variants={containerVariants}
+            transition={{ delay: 0.5, duration: 1 }}
+
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+          >
+            {wordArray.map((letter, index) => (
+              <motion.span key={index} variants={childVariants}>
+                {letter}
+              </motion.span>
+            ))}
+          </motion.div>
+
+          {/* <h1>COMING SOON</h1> */}
           <div className="blur-container">
             <ProgressBar />
           </div>

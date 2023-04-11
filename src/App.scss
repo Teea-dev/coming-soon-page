@@ -112,10 +112,10 @@
  display: flex;
  flex-direction: column;
  justify-content: center;
-  h1 {
+  .word {
     text-align: center;
     margin-bottom: 20px;
-    color: #fff;
+    color: #fff ;
     font-size: 100px;
     font-weight:bolder;
   }
@@ -126,5 +126,31 @@ border-radius: 16px;
 box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 backdrop-filter: blur(12.9px);
 -webkit-backdrop-filter: blur(12.9px);
+  }
+}
+
+/* Media Queries for Responsive Design */
+@media screen and (max-width: 768px) {
+  .container {
+    grid-template-columns: 1fr; /* Change to single column for mobile */
+    grid-template-areas: 
+    'coming-soon'/* Define grid areas for mobile */
+    'form';
+    min-height: auto; /* Remove min-height for mobile */
+  }
+
+  .form {
+    grid-area: form; /* Set grid area for form on mobile */
+  }
+
+  .coming-soon {
+    grid-area: coming-soon; /* Set grid area for coming-soon on mobile */
+  }
+
+  h1 {
+    font-size: 40px; /* Adjust font size for mobile */
+  }
+  .bgDiv {
+    background-position: top; /* Adjust background position for mobile */
   }
 }
