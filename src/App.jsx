@@ -93,7 +93,7 @@ function App() {
           <motion.div
             className="word"
             variants={containerVariants}
-            transition={{ delay: 0.5, duration: 1 }}
+            transition={{ delay: 0.5 ,duration: 1 }}
 
             initial="hidden"
             animate="visible"
