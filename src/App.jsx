@@ -1,3 +1,4 @@
+import React, { useEffect, useState,useRef } from "react";
 import "./App.scss";
 import {
   FaFacebookF,
@@ -10,6 +11,32 @@ import ProgressBar from "./ProgressBar";
 import { motion } from "framer-motion";
 
 function App() {
+  // const [display, setDisplay] = useState(false);
+  // const [isMobileView, setIsMobileView] = useState(false);
+    const bgRef = useRef(null) ;
+    const comingSoonRef = useRef(null) ;
+    const formRef = useRef(null) ;
+  const handleClick = () => {
+    formRef.current.classList.add("hide-form")
+    bgRef.current.classList.add("translate");
+    comingSoonRef.current.classList.add("translate");
+
+  };
+
+
+
+  
+  // useEffect(() => {
+  //   function handleResize() {
+  //     setIsMobileView(window.innerWidth <= 768);
+  //   }
+
+  //   window.addEventListener("resize", handleResize);
+  //   handleResize();
+
+  //   return () => window.removeEventListener("resize", handleResize);
+  // }, [display]);
+
   const word = "COMING SOON";
   const wordArray = word.split("");
 
@@ -46,12 +73,12 @@ function App() {
   };
   return (
     <>
-      <div className="bgDiv">
+      <div className="bgDiv" ref={bgRef}>
         <div></div>
         <div></div>
       </div>
       <div className="container">
-        <div className="form">
+        <div className={"form"} ref={formRef}>
           <div className="logo">
             <img src={logo} alt="" />
           </div>
@@ -67,7 +94,11 @@ function App() {
               placeholder="Type Your Email"
               className="email-input"
             />
-            <button type="submit" className="submit-button">
+            <button
+              type="submit"
+              onClick={handleClick}
+              className="submit-button"
+            >
               <FaArrowRight className="arrow-icon" fill="purple" />{" "}
               {/* Arrow icon from react-icons/fa */}
             </button>
@@ -88,29 +119,29 @@ function App() {
             <h3>Contact Us</h3>
           </div>
         </div>
+       (
+          <div className="coming-soon" ref={comingSoonRef} >
+            <motion.div
+              className="word"
+              variants={containerVariants}
+              transition={{ delay: 0.5, duration: 1 }}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+            >
+              {wordArray.map((letter, index) => (
+                <motion.span key={index} variants={childVariants}>
+                  {letter}
+                </motion.span>
+              ))}
+            </motion.div>
 
-        <div className="coming-soon">
-          <motion.div
-            className="word"
-            variants={containerVariants}
-            transition={{ delay: 0.5 ,duration: 1 }}
-
-            initial="hidden"
-            animate="visible"
-            exit="exit"
-          >
-            {wordArray.map((letter, index) => (
-              <motion.span key={index} variants={childVariants}>
-                {letter}
-              </motion.span>
-            ))}
-          </motion.div>
-
-          {/* <h1>COMING SOON</h1> */}
-          <div className="blur-container">
-            <ProgressBar />
+            {/* <h1>COMING SOON</h1> */}
+            <div className="blur-container">
+              <ProgressBar />
+            </div>
           </div>
-        </div>
+        )
       </div>
     </>
   );
