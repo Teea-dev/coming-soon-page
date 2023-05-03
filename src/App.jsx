@@ -119,7 +119,7 @@ function App() {
             <h3>Contact Us</h3>
           </div>
         </div>
-       (
+       
           <div className="coming-soon" ref={comingSoonRef} >
             <motion.div
               className="word"
@@ -141,7 +141,7 @@ function App() {
               <ProgressBar />
             </div>
           </div>
-        )
+        
       </div>
     </>
   );
