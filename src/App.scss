@@ -144,8 +144,8 @@
 
   .container{
  display: block;
- margin: 0 auto;
-
+ margin: 5rem auto;
+height: 50%;
 
   }
   .coming-soon {
@@ -186,6 +186,7 @@
     /* Set grid area for form on mobile */
     // padding: 2em; /* Adjust padding for mobile */
     margin: 20px;
+    padding: 10px;
   }
 
   .hide-form {
